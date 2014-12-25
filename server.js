@@ -5,6 +5,7 @@ var express = require('express'),
     fs = require('fs');
 
 var serverMode = process.env.NODE_ENV;
+var port = process.env.PORT || 8080;
 
 var tidy = require('htmltidy').tidy;
 
@@ -78,5 +79,5 @@ app.get('/*.html', function(req, res) {
     });
 });
 
-app.listen(8080);
-console.log('Application Started on http://localhost:8080/');
+app.listen(port);
+console.log('Application Started on http://localhost:' + port + '/');
