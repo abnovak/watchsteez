@@ -8,7 +8,6 @@ sass_dir = "app/scss"
 images_dir = "app/images"
 javascripts_dir = "app/js"
 additional_import_paths = [
-	'bower_components/bootstrap-sass-official/assets/stylesheets/', 
     'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap',
     'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins', 
     'app/scss/bootstrap_overrides'
