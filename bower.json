@@ -6,11 +6,5 @@
         "bootstrap-sass-official": "latest"
     },
     "exportsOverride": {
-        "bootstrap-sass-official": {
-            "js": "dist/js/bootstrap.min.js",
-            "scss": "lib/*.scss",
-            "dist": "dist",
-            "example": "examples/theme/*.*"
-        }
     }
 }

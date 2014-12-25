@@ -48,19 +48,7 @@ module.exports = function(grunt) {
             // },
             dev: { // Another target
                 options: {
-                    app: 'stand_alone',
-                    basePath: '.',
-                    sassDir: ['app/scss'],
-                    importPath: ['app/lib/bootstrap-sass/scss/', 'app/lib/bootstrap-sass-datepicker/', 'app/scss/bootstrap_overrides'],
-                    cssDir: 'app/css',
-                    imagesDir: 'app/images',
-                    fontsDir: 'app/fonts',
-                    javascriptsDir: 'app/js',
-                    specify: ['app/scss/main.scss'],
-                    outputStyle: 'expanded',
-                    trace: true,
-                    debugInfo: false,
-                    relativeAssets: true
+                   config: 'config.rb'
                 }
             }
         },
@@ -190,7 +178,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', 'Building your templates.', ['clean', 'compile-style', 'express:build', 'execute:deploy', 'express:build:stop']);
 
-    grunt.registerTask('compile-style', ['compass:dev', 'bless']);
+    grunt.registerTask('compile-style', ['compass:dev']);
 
     grunt.registerTask('heroku', ['setup', 'compile-style']);
 
