@@ -1,0 +1,16 @@
+{
+    "name": "watchsteez",
+    "version": "0.0.1",
+    "dependencies": {
+        "jquery": "~1.10.2",
+        "bootstrap-sass-official": "latest"
+    },
+    "exportsOverride": {
+        "bootstrap-sass-official": {
+            "js": "dist/js/bootstrap.min.js",
+            "scss": "lib/*.scss",
+            "dist": "dist",
+            "example": "examples/theme/*.*"
+        }
+    }
+}

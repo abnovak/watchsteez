@@ -1,0 +1,5 @@
+node_modules
+*.log
+codekit-config.json
+build/
+bower_components/
