@@ -169,7 +169,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('compile-style', ['compass:dev']);
 
-    grunt.registerTask('heroku', ['setup', 'compile-style']);
+    grunt.registerTask('heroku', ['compile-style']);
 
     grunt.registerTask('default', ['server']);
 };
