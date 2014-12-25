@@ -3,3 +3,4 @@ node_modules
 codekit-config.json
 build/
 bower_components/
+.sass_cache/

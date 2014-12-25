@@ -36,16 +36,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        compass: { // Task
-            // dist: { // Target
-            //     options: { // Target options
-            //         app: 'stand_alone',
-            //         basePath: 'app',
-            //         sassDir: ['scss', 'scss/bootstrap', 'lib/bootstrap-sass/scss'],
-            //         cssDir: 'css',
-            //         specify: 'main'
-            //     }
-            // },
+        compass: { // Task           
             dev: { // Another target
                 options: {
                    config: 'config.rb'
@@ -166,9 +157,7 @@ module.exports = function(grunt) {
 
     // grunt.event.on('watch', function(action, filepath) {
     //     grunt.task.run(['compass:dev']);
-    // });
-
-    grunt.registerTask('default', ['server']);
+    // });    
 
     grunt.registerTask('setup', ['exec:bower', 'exec:npm']);
 
@@ -182,5 +171,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('heroku', ['setup', 'compile-style']);
 
-    // grunt.registerTask('build', 'Building your templates.', ['execute:deploy']);
+    grunt.registerTask('default', ['server']);
 };
