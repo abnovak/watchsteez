@@ -1,13 +1,6 @@
-{
-    "epic1": {
-        "screens": {
-            "screen1": {
-                "url": "screen1.html",
-                "page": "screen1",
-                "title": "Screen 1"
-            }
-        },
-        "title": "Epic Title",
-        "slug": ""
-    }
-}
+[
+    {
+        "page": "home",
+        "title": "WatchSteez"
+    }    
+]

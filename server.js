@@ -38,9 +38,6 @@ app.use('/images', express.static(__dirname + '/app/images'));
 app.use('/images', express.directory(__dirname + '/app/images'));
 app.use('/fonts', express.static(__dirname + '/app/fonts'));
 app.use('/fonts', express.directory(__dirname + '/app/fonts'));
-app.use('/lib', express.static(__dirname + '/app/lib'));
-app.use('/test', express.static(__dirname + '/app/lib/bootstrap-sass/example'));
-app.use('/data', express.static(__dirname + '/app/data'));
 
 var tidyopts = {
     indent: 'auto',
@@ -51,7 +48,17 @@ var tidyopts = {
 };
 
 app.get('/', function(req, res) {
-    res.render('index', {page: 'index', title: 'Index', urls: urls}, function(err, html) {
+    var page = 'home';
+    var urlObj = getURLObj(page);
+    // console.dir("urlObj is: " + urlObj);  
+    res.render(page, {
+        page: page,
+        title: urlObj.title,
+        urls: urls,
+        env: serverMode
+    }, function(err, html) {
+        // console.log(html);
+        // res.send(html);
         tidy(html, tidyopts, function(err, html) {
             console.log(err);
             res.send(html);
@@ -60,7 +67,17 @@ app.get('/', function(req, res) {
 });
 
 app.get('/index.html', function(req, res) {
-    res.render('index', {page: 'index', title: 'Index', urls: urls}, function(err, html) {
+    var page = 'index';
+    var urlObj = getURLObj(page);
+    console.log("urlObj is: %j", urlObj);  
+    res.render(page, {
+        page: page,
+        title: urlObj.title,
+        urls: urls,
+        env: serverMode
+    }, function(err, html) {
+        // console.log(html);
+        // res.send(html);
         tidy(html, tidyopts, function(err, html) {
             console.log(err);
             res.send(html);
@@ -71,13 +88,29 @@ app.get('/index.html', function(req, res) {
 
 app.get('/*.html', function(req, res) {
     var page = req.params[0];
-    res.render(page, urls[0].screens[page], function(err, html) {
+    var urlObj = getURLObj(page);
+    console.log("urlObj is: %j", urlObj);  
+    res.render(page, {
+        page: page,
+        title: urlObj.title,
+        env: serverMode
+    }, function(err, html) {
+        // console.log(html);
+        // res.send(html);
         tidy(html, tidyopts, function(err, html) {
             console.log(err);
             res.send(html);
         });
     });
 });
+
+function getURLObj(str) {
+    for (key in urls) {
+        // console.dir(urls[key]);
+        if (urls[key].page == str)
+            return urls[key];
+    }
+}
 
 app.listen(port);
 console.log('Application Started on http://localhost:' + port + '/');

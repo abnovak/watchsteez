@@ -1,0 +1,13 @@
+.navbar {
+    margin-bottom: 0px;
+}
+
+.carousel-inner > .item {
+    height: 532px;
+    .greenishCover {
+        // height: 532px;
+    }
+    & > img {
+        margin: 0 auto;
+    }
+}

@@ -1,9 +1,6 @@
 // Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
 'use strict';
-var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({
-    port: LIVERELOAD_PORT
-});
+
 var mountFolder = function(connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
@@ -40,18 +37,6 @@ module.exports = function(grunt) {
             dev: { // Another target
                 options: {
                    config: 'config.rb'
-                }
-            }
-        },
-        bless: {
-            css: {
-                options: {
-                    // Task-specific options go here.
-                    imports: false
-                },
-                files: {
-                    // Target-specific file lists and/or options go here.
-                    'app/css/main.css':'app/css/main.css'
                 }
             }
         },
@@ -100,51 +85,6 @@ module.exports = function(grunt) {
             //     ]
             // }
         },
-        connect: {
-            options: {
-                port: 9000,
-                // change this to '0.0.0.0' to access the server from outside
-                hostname: 'localhost'
-            },
-            livereload: {
-                options: {
-                    middleware: function(connect) {
-                        return [
-                            lrSnippet,
-                            mountFolder(connect, '.')
-                        ];
-                    }
-                }
-            }
-        },
-        open: {
-            server: {
-                path: 'http://localhost:<%= connect.options.port %>'
-            }
-        },
-        express: {
-            options: {
-                // Override defaults here
-            },
-            dev: {
-                options: {
-                    script: 'server.js',
-                    node_env: 'dev'
-                }
-            },
-            build: {
-                options: {
-                    script: 'server.js',
-                    node_env: 'build'
-                }
-            },
-            prod: {
-                options: {
-                    script: 'server.js',
-                    node_env: 'prod'
-                }
-            }
-        },
         execute: {
             deploy: {
                 src: ['build.js']
@@ -152,6 +92,16 @@ module.exports = function(grunt) {
         },
         clean: {
             build: ["build/", "dist/"]
+        },
+        express: {
+            dev: {
+                options: {
+                    debug: true,
+                    port: 8080,
+                    script: 'server.js',
+                    background: true
+                }
+            }
         }
     });
 
@@ -161,11 +111,9 @@ module.exports = function(grunt) {
 
     grunt.registerTask('setup', ['exec:bower', 'exec:npm']);
 
-    grunt.registerTask('server', ['compile-style', 'express:dev', 'connect:livereload', 'watch']);
+    grunt.registerTask('server', ['compile-style', 'express:dev', 'watch']);
 
-    grunt.registerTask('stop-server', ['express:dev:stop']);
-
-    grunt.registerTask('build', 'Building your templates.', ['clean', 'compile-style', 'express:build', 'execute:deploy', 'express:build:stop']);
+    grunt.registerTask('build', 'Building your templates.', ['clean', 'compile-style', 'express:dev']);
 
     grunt.registerTask('compile-style', ['compass:dev']);
 
