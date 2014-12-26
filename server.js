@@ -7,8 +7,6 @@ var express = require('express'),
 var serverMode = process.env.NODE_ENV;
 var port = process.env.PORT || 8080;
 
-var tidy = require('htmltidy').tidy;
-
 var data = fs.readFileSync('./file_config.json'),
     urls;
 console.log('data is: %j', data);
@@ -39,14 +37,6 @@ app.use('/images', express.directory(__dirname + '/app/images'));
 app.use('/fonts', express.static(__dirname + '/app/fonts'));
 app.use('/fonts', express.directory(__dirname + '/app/fonts'));
 
-var tidyopts = {
-    indent: 'auto',
-    outputHtml: 'yes',
-    indentSpaces: '4',
-    wrap: '0',
-    'drop-empty-elements': false
-};
-
 app.get('/', function(req, res) {
     var page = 'home';
     var urlObj = getURLObj(page);
@@ -59,10 +49,6 @@ app.get('/', function(req, res) {
     }, function(err, html) {
         console.log(html);
         res.send(html);
-        // tidy(html, tidyopts, function(err, html) {
-        //     console.log(err);
-        //     res.send(html);
-        // });
     });
 });
 
@@ -76,12 +62,8 @@ app.get('/index.html', function(req, res) {
         urls: urls,
         env: serverMode
     }, function(err, html) {
-        // console.log(html);
-        // res.send(html);
-        tidy(html, tidyopts, function(err, html) {
-            console.log(err);
-            res.send(html);
-        });
+        console.log(html);
+        res.send(html);        
     });
 });
 
@@ -95,12 +77,8 @@ app.get('/*.html', function(req, res) {
         title: urlObj.title,
         env: serverMode
     }, function(err, html) {
-        // console.log(html);
-        // res.send(html);
-        tidy(html, tidyopts, function(err, html) {
-            console.log(err);
-            res.send(html);
-        });
+        console.log(html);
+        res.send(html);        
     });
 });
 
