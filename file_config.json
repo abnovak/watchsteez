@@ -2,5 +2,9 @@
     {
         "page": "home",
         "title": "WatchSteez"
+    },
+    {
+        "page": "about",
+        "title": "About | WatchSteez"
     }    
 ]
