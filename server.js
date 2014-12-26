@@ -11,7 +11,7 @@ var tidy = require('htmltidy').tidy;
 
 var data = fs.readFileSync('./file_config.json'),
     urls;
-
+console.log('data is: %j', data);
 try {
     urls = JSON.parse(data);
     // console.dir(urls);
@@ -57,12 +57,12 @@ app.get('/', function(req, res) {
         urls: urls,
         env: serverMode
     }, function(err, html) {
-        // console.log(html);
-        // res.send(html);
-        tidy(html, tidyopts, function(err, html) {
-            console.log(err);
-            res.send(html);
-        });
+        console.log(html);
+        res.send(html);
+        // tidy(html, tidyopts, function(err, html) {
+        //     console.log(err);
+        //     res.send(html);
+        // });
     });
 });
 
