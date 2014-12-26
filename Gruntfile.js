@@ -36,7 +36,8 @@ module.exports = function(grunt) {
         compass: { // Task           
             dev: { // Another target
                 options: {
-                   config: 'config.rb'
+                   config: 'config.rb',
+                   specify: 'app/scss/main.scss'
                 }
             }
         },

@@ -11,7 +11,8 @@ additional_import_paths = [
 	'bower_components/bootstrap-sass-official/assets/stylesheets/', 
     'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap',
     'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins', 
-    'app/scss/bootstrap_overrides'
+    'app/scss/bootstrap_overrides',
+    'app/scss/modules'
 ]
 
 
