@@ -9,7 +9,7 @@ var port = process.env.PORT || 8080;
 
 var data = fs.readFileSync('./file_config.json'),
     urls;
-console.log('data is: %j', data);
+    
 try {
     urls = JSON.parse(data);
     // console.dir(urls);
